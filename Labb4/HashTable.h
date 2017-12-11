@@ -2,14 +2,14 @@
 #define HASHTABLE_H
 
 #include "Bucket.h"
-//#include "List.h" // Avkommentera denna rad ifall du vill implementera Hashtabellen med lankade listor
+#include "List.h" // Avkommentera denna rad ifall du vill implementera Hashtabellen med lankade listor
 
 typedef struct 
 {
 	// Steg 1: Avkommentera exakt en av dessa rader
 	
-	struct Bucket* table; // Avkommentera denna ifall ni vill implementera Hashtabellen med oppen adresering
-	//List* table;   // Avkommentera denna ifall ni vill implemenetera Hashtabellen som en array lankade listor
+	//struct Bucket* table; // Avkommentera denna ifall ni vill implementera Hashtabellen med oppen adresering
+	List* table;   // Avkommentera denna ifall ni vill implemenetera Hashtabellen som en array lankade listor
 	
 	unsigned int size; // Storleken på Hashtabellen
 } HashTable;
