@@ -140,7 +140,7 @@ void removeLast(List *list)
 int removeElement(List *list, const Data data)
 {
 	// Testar om list->data innehåller det vi letar efter och kallar remove first så att nuvarande ersätts med nästa och returnerar 1
-	if ((*list)->data == data)
+	if ((*list)->data.key == data.key)
 	{
 		removeFirst(list,data);
 		return 1;
@@ -173,7 +173,7 @@ int search(const List list, const Data data)
 	}
 	
 	// om datat stämmer returneras 1
-	else if (list->data == data)
+	else if (list->data.key == data.key)
 	{
 		return 1;
 	}

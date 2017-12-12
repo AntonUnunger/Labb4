@@ -4,6 +4,7 @@
 #include<assert.h>
 #include<stdlib.h>
 #include<stdio.h>
+#include "list.h"
 
 #define UNUSED 0	// Anvands for att markera en ledig plats i Hashtabellen
 
@@ -12,19 +13,30 @@
 dvs ett index till arrayen som Šr Hashtabellen */
 static int hash(Key key, int tablesize)
 {
-	return -1; // Ersatt med ett index
+	return key%tablesize;
 }
 
 HashTable createHashTable(unsigned int size)
 {
 	// Dessa tva rader ar bara till for att labskelettet ska kompilera. Ta bort dessa nar du skriver funktionen.
-	HashTable htable = { 0 };
+	HashTable htable;
+	htable.table = calloc(size, sizeof(struct node));
+	htable.size = size;
+	for (int i = 0; i < size; i++)
+	{
+		htable.table[i] = createEmptyList();
+	}
 	return htable;
 }
 
 /* Satter in paret {key,data} i Hashtabellen, om en nyckel redan finns ska vardet uppdateras */
 void insertElement(HashTable* htable, const Key key, const Value value)
 {
+	int index = hash(key, htable->size);
+	if (htable->table[index] != NULL)
+	{
+		addFirst(htable->table[index], value);
+	}
 	// Postcondition: det finns ett element for key i tabellen (anvand lookup() for att verifiera)
 }
 
@@ -50,7 +62,7 @@ void freeHashTable(HashTable* htable)
 /* Ger storleken av Hashtabellen */
 unsigned int getSize(const HashTable* htable)
 {
-    return 0; // Ersatt med ratt varde
+	return (*htable).size;
 }
 
 /* Denna for att ni enkelt ska kunna visualisera en Hashtabell */
