@@ -40,14 +40,14 @@ void test(unsigned int tableSize)
 {
     assert(tableSize >= 50); // Vi ska lagga till 50 personer sa vi maste minst ha 50 platser
     
-    HashTable htable = createHashTable(tableSize); 
-    int personalNumbers[50];
+	HashTable htable = createHashTable(tableSize);
+	int personalNumbers[50];
     srand((unsigned int)time(0));
-    
-    assert(getSize(&htable) == tableSize);
-    
-    int i;
-    for (i = 0; i < 50; i++)
+	
+	assert(getSize(&htable) == tableSize);
+	
+	int i;
+	for (i = 0; i < 50; i++)
     {
         int personalNumber = addRandomPersonToTable(&htable);
         personalNumbers[i] = personalNumber;

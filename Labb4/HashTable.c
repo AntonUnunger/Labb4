@@ -71,6 +71,11 @@ const Value* lookup(const HashTable* htable, const Key key)
 /* Tommer Hashtabellen */
 void freeHashTable(HashTable* htable)
 {
+	for (int index = 0; index < htable->size; index++)
+	{
+		clearList(&htable->table[index]);
+	}
+	htable->size = 0;
 	// Postcondition: hashtabellen har storlek 0
 }
 
@@ -85,11 +90,13 @@ void printHashTable(const HashTable* htable)
 {
 	for (int index = 0; index < htable->size; index++)
 	{
-		if (htable->table[index] != NULL)
+		List ptr = htable->table[index];
+		while (ptr != NULL)
 		{
-			printPerson(htable->table[index]);
+			printPerson(&ptr->data.value);
+			printf("\n");
+			ptr = ptr->next;
 		}
 	}
-		
 	// Tips: anvand printPerson() i Person.h for att skriva ut en person
 }
