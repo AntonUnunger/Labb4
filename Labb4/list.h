@@ -63,7 +63,7 @@ void removeLast(List *list);
 int removeElement(List *list, const Data data);
 
 //Sok efter data i listan, returnera 1 om datat finns, annars 0.
-int search(const List list, const Data data);
+Value* search(const List list, const Data data);
 
 //returnera hur manga noder som finns i listan
 int numberOfNodesInList(const List list);

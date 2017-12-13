@@ -33,9 +33,16 @@ HashTable createHashTable(unsigned int size)
 void insertElement(HashTable* htable, const Key key, const Value value)
 {
 	int index = hash(key, htable->size);
+	Data data;
+	data.key = key;
+	data.value = value;
 	if (htable->table[index] != NULL)
 	{
-		addFirst(htable->table[index], value);
+		addFirst(&htable->table[index], data);
+	}
+	else
+	{
+		addLast(&htable->table[index], data);
 	}
 	// Postcondition: det finns ett element for key i tabellen (anvand lookup() for att verifiera)
 }
@@ -43,13 +50,21 @@ void insertElement(HashTable* htable, const Key key, const Value value)
 /* Tar bort datat med nyckel "key" */
 void deleteElement(HashTable* htable, const Key key)
 {
+	int index = hash(key, htable->size);
+	Data data;
+	data.key = key;
+	removeElement(&htable->table[index], data);
+
 	// Postcondition: inget element med key finns i tabellen (anvand loookup() for att verifiera)
 }
 
 /* Returnerar en pekare till vardet som key ar associerat med eller NULL om ingen sadan nyckel finns */
 const Value* lookup(const HashTable* htable, const Key key)
 {
-	return NULL; // Ersatt med ratt varde
+	int index = hash(key, htable->size);
+	Data data;
+	data.key = key;
+	return search(htable->table[index], data);
 }
 
 
@@ -68,5 +83,13 @@ unsigned int getSize(const HashTable* htable)
 /* Denna for att ni enkelt ska kunna visualisera en Hashtabell */
 void printHashTable(const HashTable* htable)
 {
+	for (int index = 0; index < htable->size; index++)
+	{
+		if (htable->table[index] != NULL)
+		{
+			printPerson(htable->table[index]);
+		}
+	}
+		
 	// Tips: anvand printPerson() i Person.h for att skriva ut en person
 }

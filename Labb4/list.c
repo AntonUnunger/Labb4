@@ -164,18 +164,18 @@ int removeElement(List *list, const Data data)
 /*Finns data i listan?
   Om datat finns returneras 1, annars 0
   Tank pa att listan kan vara tom*/
-int search(const List list, const Data data)
+Value* search(const List list, const Data data)
 {
 	// Om list är null har vi nått slutet och inte hittat en match
 	if (list == NULL)
 	{
-		return 0;
+		return NULL;
 	}
 	
 	// om datat stämmer returneras 1
 	else if (list->data.key == data.key)
 	{
-		return 1;
+		return &list->data.key;
 	}
 
 	// itererar till list->next och skickar med data
