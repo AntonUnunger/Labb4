@@ -82,7 +82,7 @@ void freeHashTable(HashTable* htable)
 /* Ger storleken av Hashtabellen */
 unsigned int getSize(const HashTable* htable)
 {
-	return (*htable).size;
+	return htable->size;
 }
 
 /* Denna for att ni enkelt ska kunna visualisera en Hashtabell */
